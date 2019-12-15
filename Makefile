@@ -9,10 +9,10 @@ build:
 test:
 	@hugo server -t terminal
 
-deploy: 
+deploy: build
 	./scripts/deploy-gh.sh
 	./scripts/deploy-sftp.sh
 
 new-post:
-	hugo new $(POST).md
+	hugo new posts/$(POST).md
 	code .
