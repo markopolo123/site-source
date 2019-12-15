@@ -14,5 +14,5 @@ deploy:
 	./scripts/deploy-sftp.sh
 
 new-post:
-	hugo new $(POST)
-	code content/$(POST)
+	hugo new $(POST).md
+	code .
