@@ -1,10 +1,13 @@
 ---
 title: "About"
 date: 2019-12-15T11:18:12Z
-draft: true
 ---
 
-# About Page
-nothing to see here
+# wotcha
 
-testing
+Research Computing Specialist @ the University of Cambridge.
+
+Talk to me about:
+* Orchestraion: Terraform, K8s, Nomad
+* CfgMgt: Ansible
+* CNCF tooling

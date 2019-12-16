@@ -7,7 +7,7 @@ paginate = 5
   # dir name of your blog content (default is `content/posts`)
   contentTypeName = "posts"
   # ["orange", "blue", "red", "green", "pink"]
-  themeColor = "green"
+  themeColor = "pink"
   # if you set this to 0, only submenu trigger will be visible
   showMenuItems = 2
   # show selector to switch language
@@ -31,7 +31,7 @@ paginate = 5
     readOtherPosts = "Read other posts"
 
     [languages.en.params.logo]
-      logoText = "boom"
+      logoText = "Home"
       logoHomeLink = "/"
 
     [languages.en.menu]
@@ -40,6 +40,6 @@ paginate = 5
         name = "About"
         url = "/about"
       [[languages.en.menu.main]]
-        identifier = "showcase"
-        name = "Showcase"
-        url = "/showcase"
+        identifier = "github"
+        name = "GitHub"
+        url = "https://github.com/markopolo123"
