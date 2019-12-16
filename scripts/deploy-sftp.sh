@@ -9,7 +9,7 @@ printf "\033[0;32mDeploying updates to sftp target...\033[0m\n"
 cd public
 
 # Use SFTP to upload to remote.
-sftp "londonfe@host54.servers.prgn.misp.co.uk" << 'EOF'
+sftp "$SFTP_USER@host54.servers.prgn.misp.co.uk" << 'EOF'
 cd www
 put -r *
 EOF
