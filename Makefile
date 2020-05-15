@@ -16,3 +16,6 @@ deploy: build
 new-post:
 	hugo new posts/$(POST).md
 	code .
+
+grab-theme:
+	git clone https://github.com/panr/hugo-theme-terminal.git themes/terminal
