@@ -12,7 +12,7 @@
     
     
     <item>
-      <title>OpenFAAS via Faasd and Terraform on Openstack</title>
+      <title>OpenFAAS with TLS via Faasd and Terraform on Openstack</title>
       <link>/posts/openfaas-openstack/</link>
       <pubDate>Thu, 06 Aug 2020 00:00:00 +0000</pubDate>
       
