@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>OpenFAAS via Faasd and Terraform on Openstack :: Personal Site — Some time blog</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="description" content="Intro OpenFAAS is a serverless tool. One of the things I like most about it - it&amp;rsquo;s pretty agnostic. You can bring your own infra or orchestrator and roll with Dockerfiles (as long as they conform to the OpenFaas serverless workload definition). No vendor lock in!
+Their tagline: OpenFaaS® makes it simple to deploy both functions and existing code to Kubernetes
+While OpenFaas is mainly used with k8s, there are other providers available too." />
+<meta name="keywords" content="serverless, Linux, openstack, terraform" />
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="/posts/openfaas-openstack/" />
+
+
+
+
+<link rel="stylesheet" href="/assets/style.css">
+
+  <link rel="stylesheet" href="/assets/pink.css">
+
+
+
+
+
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon-144-precomposed.png">
+
+  <link rel="shortcut icon" href="/img/favicon/pink.png">
+
+
+
+<meta name="twitter:card" content="summary" />
+
+<meta name="twitter:creator" content="Mark" />
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="OpenFAAS via Faasd and Terraform on Openstack :: Personal Site">
+<meta property="og:description" content="Deploying OpenFAAS on Openstack using Faasd, Terraform and Lets Encrypt" />
+<meta property="og:url" content="/posts/openfaas-openstack/" />
+<meta property="og:site_name" content="OpenFAAS via Faasd and Terraform on Openstack" />
+
+  <meta property="og:image" content="/img/nasa-earth-space.jpg">
+
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+
+
+  <meta property="article:published_time" content="2020-08-06 00:00:00 &#43;0000 UTC" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body class="">
+
+
+<div class="container center headings--one-size">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    Home
+  </div>
+</a>
+
+    </div>
+    <div class="menu-trigger">menu</div>
+  </div>
+  
+    <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="https://github.com/markopolo123">GitHub</a></li>
+        
+      
+      
+    
+
+    
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/about">About</a></li>
+      
+    
+      
+        <li><a href="https://github.com/markopolo123">GitHub</a></li>
+      
+    
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+<div class="post">
+  <h1 class="post-title">
+    <a href="/posts/openfaas-openstack/">OpenFAAS via Faasd and Terraform on Openstack</a></h1>
+  <div class="post-meta">
+      
+    <span class="post-date">
+      2020-08-06
+    </span>
+    
+    
+    <span class="post-author">::
+      Mark
+    </span>
+    
+  </div>
+
+  
+  <span class="post-tags">
+    
+    #<a href="/tags/openfaas/">OpenFAAS</a>&nbsp;
+    
+    #<a href="/tags/openstack/">openstack</a>&nbsp;
+    
+    #<a href="/tags/containerd/">Containerd</a>&nbsp;
+    
+    #<a href="/tags/terraform/">Terraform</a>&nbsp;
+    
+  </span>
+  
+
+  
+  <img src="/img/nasa-earth-space.jpg" class="post-cover" />
+  
+
+  <div class="post-content"><div>
+        
+
+<h1 id="intro">Intro<a href="#intro" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+
+<p><a href="https://www.openfaas.com/">OpenFAAS</a> is a serverless tool. One of the things I like most about it - it&rsquo;s pretty agnostic. You can bring your own infra or orchestrator and roll with Dockerfiles (as long as they conform to the <a href="https://docs.openfaas.com/reference/workloads/">OpenFaas serverless workload definition</a>). No vendor lock in!</p>
+
+<p>Their tagline:
+<code>OpenFaaS® makes it simple to deploy both functions and existing code to Kubernetes</code></p>
+
+<p>While OpenFaas is mainly used with k8s, there are <a href="https://docs.openfaas.com/architecture/faas-provider/">other providers</a> available too. We&rsquo;ll be experimenting with one of those (Faasd) in this post. The cloud of choice is <a href="https://www.openstack.org/">Openstack</a> based and we&rsquo;ll be using <a href="https://www.terraform.io/">Terraform</a> to manage our cloud resources within it.</p>
+
+<p>The Terraform required to make all this work is in <a href="https://github.com/markopolo123/openstack-faasd">this repository</a>.</p>
+
+<h2 id="why-would-i-want-to-do-this">Why would I want to do this?<a href="#why-would-i-want-to-do-this" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+
+<p>You probably don&rsquo;t outside of curiosity. Personally, I want to do serverless on the edge with out the complexity and overhead of K8s. This is a cool way to achieve that!</p>
+
+<h1 id="prerequisites">Prerequisites<a href="#prerequisites" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+
+<ol>
+<li><p>You&rsquo;ll need an openstack project with the following resources available to consume:</p>
+
+<ul>
+<li>One Instance (and enough VCPU&rsquo;s and RAM for it)</li>
+<li>One Floating IP</li>
+<li>One Security Group</li>
+<li>One Network</li>
+<li>One Router</li>
+</ul>
+
+<p>You&rsquo;ll also want to make sure that you are able to connect to your cloud&rsquo;s APIs via the CLI. Note that Terraform supports authentication using both the newer application credentials via <a href="https://docs.openstack.org/python-openstackclient/ussuri/configuration/index.html">clouds.yaml</a> or <a href="https://docs.openstack.org/python-openstackclient/ussuri/cli/man/openstack.html#manpage">Environment Variables</a>.</p></li>
+
+<li><p><a href="https://www.terraform.io">Download Terraform</a>. It will need to be available on your <code>$PATH</code>.</p></li>
+
+<li><p>Clone this repo</p>
+
+<pre><code class="language-bash">git clone https://github.com/markopolo123/openstack-faasd.git
+# move into the repository directory:
+cd openstack-faasd
+</code></pre></li>
+
+<li><p>Define variables in <code>variables.tfvars</code></p>
+
+<p>We&rsquo;ll need to create a file called <code>variables.tfvars</code> in the root of this project and populate with variables; required ones are shown below:</p>
+
+<pre><code class="language-bash">cat variables.tfvars
+
+letsencrypt_email = &quot;Your email here&quot;
+public_url      = &quot;faasd.url.here&quot;
+static_fip      = &quot;1.2.3.4&quot; # preallocated Floating IP
+public_network  = &quot;&quot; # Public Network ID for your Floating IP
+image_name      = &quot;CentOS-8-GenericCloud-8.1.1911-20200113.3&quot; # Your image name here
+dns_nameservers = [&quot;8.8.8.8&quot;, &quot;8.8.4.4&quot;] # DNS if needed
+flavor_name     = &quot;C1.openstack.tiny&quot; # Flavor type here
+</code></pre>
+
+<blockquote>
+<p>Note that here the Floating IP has been pre allocated to the project - this is due to limitations with DNS CNAME records in the cloud available to me.</p>
+</blockquote>
+
+<p>There are more variables we could define here, for instance, we could change the versions of <em>containerd</em> or <em>faasd</em>. Check out <code>variables.tf</code> for a full list of variables for this project.</p></li>
+
+<li><p>Run commands in the <code>Makefile</code></p>
+
+<p>The Terraform commands have been wrapped in a <code>Makefile</code> to <em>make</em> things easier for us. It&rsquo;s pretty simple, but saves us having to remember a few flags/options on our terraform commands.</p>
+
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Explanation</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>make help</td>
+<td>lists available commands</td>
+</tr>
+
+<tr>
+<td>make plan</td>
+<td>Generates a plan of action for Terraform</td>
+</tr>
+
+<tr>
+<td>make apply</td>
+<td>Applies the plan generated in the last step</td>
+</tr>
+
+<tr>
+<td>make destroy</td>
+<td>Destroys the cloud resources</td>
+</tr>
+
+<tr>
+<td>make output</td>
+<td>Displays the output</td>
+</tr>
+</tbody>
+</table>
+
+<blockquote>
+<p>NOTE: The state file is local, which will probably not be what you want for a production instance. While we are at it - you will probably not want your OpenFaas password randomly generated and stored in your state file too. You have been warned ;)</p>
+</blockquote></li>
+
+<li><p>Enjoy OpenFaas</p>
+
+<p>The Terraform run completes in a few seconds, however <code>cloud-init</code> will take a minute or two to run through the sequence of commands required to get us up and running.</p>
+
+<p>After the Terraform run is finished you will be presented with the output</p>
+
+<pre><code class="language-bash">Outputs:
+
+gateway_url = https://your.url.here/
+login_cmd = faas-cli login -g https://your.url.here/ -p passwordhere
+password = passwordhere
+</code></pre></li>
+</ol>
+
+<h2 id="example">Example<a href="#example" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+
+<p>Not much to see here, but just in case:</p>
+
+<p style="text-align:center;">
+<script id="asciicast-mkch8uDWp9oFBxISCG0MHR6F7" src="https://asciinema.org/a/mkch8uDWp9oFBxISCG0MHR6F7.js" async></script></p>
+
+      </div></div>
+
+  
+  
+<div class="pagination">
+    <div class="pagination__title">
+        <span class="pagination__title-h">Read other posts</span>
+        <hr />
+    </div>
+    <div class="pagination__buttons">
+        
+        
+        <span class="button next">
+            <a href="/posts/ubuntu-pi4-k3s/">
+                <span class="button__text">k3s, Ubuntu 19.10 and a Pi4</span>
+                <span class="button__icon">→</span>
+            </a>
+        </span>
+        
+    </div>
+</div>
+
+  
+
+  
+
+</div>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2020 Powered by <a href="http://gohugo.io">Hugo</a></span>
+    
+        <span>:: Theme made by <a href="https://twitter.com/panr">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+<script src="/assets/main.js"></script>
+<script src="/assets/prism.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>minio on Personal Site</title>
+    <link>/tags/minio/</link>
+    <description>Recent content in minio on Personal Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 09 Jul 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/minio/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Configuring Minio</title>
+      <link>/posts/pi4-minio/</link>
+      <pubDate>Thu, 09 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/pi4-minio/</guid>
+      <description>wget https://dl.min.io/server/minio/release/linux-arm64/minio chmod a+x minio mkdir ~/minio-data ./minio server ~/minio-data  </description>
+    </item>
+    
+  </channel>
+</rss>

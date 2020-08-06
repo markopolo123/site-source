@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>restic on Personal Site</title>
+    <link>/tags/restic/</link>
+    <description>Recent content in restic on Personal Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 06 Jun 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/restic/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Restic Backups to backblaze</title>
+      <link>/posts/restic-backups/</link>
+      <pubDate>Sat, 06 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/restic-backups/</guid>
+      <description>Restic is a nifty backup tool written using GOLANG. It can encrypt backups, do deduplication and is compatible with all common cloud provider&amp;rsquo;s storage offerings. Here we will be backing up super important data to BackBlaze B2.
+BackBlaze B2 Cloud Storage is pretty great. the company are open and up front about their costs and publish a regular report on drive stats. The idea of using backblaze here for me is simple - I already back up locally but want to make sure that my data is also stored safely off site.</description>
+    </item>
+    
+  </channel>
+</rss>

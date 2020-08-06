@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Personal Site</title>
+    <link>/posts/</link>
+    <description>Recent content in Posts on Personal Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 06 Aug 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>OpenFAAS via Faasd and Terraform on Openstack</title>
+      <link>/posts/openfaas-openstack/</link>
+      <pubDate>Thu, 06 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/openfaas-openstack/</guid>
+      <description>Intro OpenFAAS is a serverless tool. One of the things I like most about it - it&amp;rsquo;s pretty agnostic. You can bring your own infra or orchestrator and roll with Dockerfiles (as long as they conform to the OpenFaas serverless workload definition). No vendor lock in!
+Their tagline: OpenFaaS® makes it simple to deploy both functions and existing code to Kubernetes
+While OpenFaas is mainly used with k8s, there are other providers available too.</description>
+    </item>
+    
+    <item>
+      <title>k3s, Ubuntu 19.10 and a Pi4</title>
+      <link>/posts/ubuntu-pi4-k3s/</link>
+      <pubDate>Mon, 13 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/ubuntu-pi4-k3s/</guid>
+      <description>On the matter of Operating Systems Raspian is perfectly good, but there are a few niggles. It isn&amp;rsquo;t 64 bit, so running things like mongodb is a problem. Also, it&amp;rsquo;d be nice to use cloud-init to preconfigure some stuff, such as SSH keys. If you want to try a 64 bit OS for your Pi4, Ubuntu is a solid option.
+cgroup_memory = 0 cgroup_memory is disabled by default on raspbian and is required for k8s.</description>
+    </item>
+    
+    <item>
+      <title>OpenFAAS via Containerd on a Raspberry PI 4</title>
+      <link>/posts/pi4-containerd-openfaas/</link>
+      <pubDate>Fri, 20 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/pi4-containerd-openfaas/</guid>
+      <description>Intro OpenFAAS is a serverless tool. One of the things I like most about it - it&amp;rsquo;s pretty agnostic. You can bring your own infra or orchestrator and roll with Dockerfiles. No vendor lock in!
+Their tagline: OpenFaaS® makes it simple to deploy both functions and existing code to Kubernetes
+While it is mainly used with k8s, there are also providers for other orchestrators, such as Hashicorp&amp;rsquo;s Nomad. Today I&amp;rsquo;ll be trying out a new provider for Containerd on my Raspberry Pi 4b.</description>
+    </item>
+    
+    <item>
+      <title>New Hugo Site</title>
+      <link>/posts/home/</link>
+      <pubDate>Wed, 11 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/home/</guid>
+      <description>First post on the new site. It&amp;rsquo;s a hugo site, using the terminal theme by panr. Previously Pelican was my static site generator of choice but I&amp;rsquo;ve heard good things about Hugo and fancied giving it a go.
+Here&amp;rsquo;s how its configured:
+Installation I&amp;rsquo;m using Hugo with Github Pages) and my own hosting.
+As I won&amp;rsquo;t be using Hugo/this blog everyday I will forget the commands for it so I&amp;rsquo;ve wrapped everything I need into a Makefile:</description>
+    </item>
+    
+  </channel>
+</rss>

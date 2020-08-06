@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Personal Site</title>
+    <link>/tags/</link>
+    <description>Recent content in Tags on Personal Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 06 Aug 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Containerd</title>
+      <link>/tags/containerd/</link>
+      <pubDate>Thu, 06 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/containerd/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>OpenFAAS</title>
+      <link>/tags/openfaas/</link>
+      <pubDate>Thu, 06 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/openfaas/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>openstack</title>
+      <link>/tags/openstack/</link>
+      <pubDate>Thu, 06 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/openstack/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Terraform</title>
+      <link>/tags/terraform/</link>
+      <pubDate>Thu, 06 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/terraform/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>k3s</title>
+      <link>/tags/k3s/</link>
+      <pubDate>Mon, 13 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/k3s/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>k8s</title>
+      <link>/tags/k8s/</link>
+      <pubDate>Mon, 13 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/k8s/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Pi4</title>
+      <link>/tags/pi4/</link>
+      <pubDate>Mon, 13 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/pi4/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ubuntu</title>
+      <link>/tags/ubuntu/</link>
+      <pubDate>Mon, 13 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/ubuntu/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hugo</title>
+      <link>/tags/hugo/</link>
+      <pubDate>Wed, 11 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pipeline</title>
+      <link>/tags/pipeline/</link>
+      <pubDate>Wed, 11 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/pipeline/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

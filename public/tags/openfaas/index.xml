@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>OpenFAAS on Personal Site</title>
+    <link>/tags/openfaas/</link>
+    <description>Recent content in OpenFAAS on Personal Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 06 Aug 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/openfaas/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>OpenFAAS via Faasd and Terraform on Openstack</title>
+      <link>/posts/openfaas-openstack/</link>
+      <pubDate>Thu, 06 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/openfaas-openstack/</guid>
+      <description>Intro OpenFAAS is a serverless tool. One of the things I like most about it - it&amp;rsquo;s pretty agnostic. You can bring your own infra or orchestrator and roll with Dockerfiles (as long as they conform to the OpenFaas serverless workload definition). No vendor lock in!
+Their tagline: OpenFaaS® makes it simple to deploy both functions and existing code to Kubernetes
+While OpenFaas is mainly used with k8s, there are other providers available too.</description>
+    </item>
+    
+    <item>
+      <title>OpenFAAS via Containerd on a Raspberry PI 4</title>
+      <link>/posts/pi4-containerd-openfaas/</link>
+      <pubDate>Fri, 20 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/pi4-containerd-openfaas/</guid>
+      <description>Intro OpenFAAS is a serverless tool. One of the things I like most about it - it&amp;rsquo;s pretty agnostic. You can bring your own infra or orchestrator and roll with Dockerfiles. No vendor lock in!
+Their tagline: OpenFaaS® makes it simple to deploy both functions and existing code to Kubernetes
+While it is mainly used with k8s, there are also providers for other orchestrators, such as Hashicorp&amp;rsquo;s Nomad. Today I&amp;rsquo;ll be trying out a new provider for Containerd on my Raspberry Pi 4b.</description>
+    </item>
+    
+  </channel>
+</rss>
